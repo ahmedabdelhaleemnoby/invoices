@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SectionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,5 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+Route::resource('invoices', InvoicesController::class);
+Route::resource('sections', SectionsController::class);
 
 Route::get('/{page}', [AdminController::class, 'index']);

@@ -1,10 +1,7 @@
 @extends('layouts.master2')
-
 @section('title')
-تسجيل الدخول - نوبي سوفت للادارة القانونية
+تسجيل الدخول - نوبي سوفت
 @stop
-
-
 @section('css')
 <!-- Sidemenu-respoansive-tabs css -->
 <link href="{{URL::asset('assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css')}}" rel="stylesheet">
