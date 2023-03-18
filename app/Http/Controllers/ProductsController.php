@@ -74,7 +74,9 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Products $products)
     {
+        // dd($request);
         // return $request;
+        $id = sections::where('section_name', $request->section_name)->first()->id;
         $this->validate(
             $request,
             [
@@ -91,7 +93,7 @@ class ProductsController extends Controller
         $update = Products::findOrFail($request->id);
         $update->product_name = $request->input('product_name');
         $update->description = $request->input('description');
-        // $update->section_id = $request->input('section_id');
+        $update->section_id = $id;
         $update->save();
         return redirect('/products')->with('edit', 'تم تعديل القسم بنجاح');
     }
