@@ -95,7 +95,7 @@
                     </svg><span class="side-menu__label">الاعدادات</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ url('/' . $page='sections') }}">الاقسام</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . $page='editprofile') }}">المنتجات</a></li>
+                    <li><a class="slide-item" href="{{ url('/' . $page='products') }}">المنتجات</a></li>
                 </ul>
             </li>
 
