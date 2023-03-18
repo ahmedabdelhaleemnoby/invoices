@@ -1270,7 +1270,7 @@ input {
   background-color: transparent;
 
   &:hover, &:focus {
-    color: $white;
+    color: $black;
   }
 }
 
@@ -1557,7 +1557,7 @@ input {
 	color: $white;
 	background:linear-gradient(to left, #0db2de 0%, #005bea 100%);
 	border:1px solid #0db2de;
-	
+
 	&:hover {
     color: $white;
     background: linear-gradient(to left, #099fc7 0%, #0555d4 100%);
@@ -1577,7 +1577,7 @@ input {
 	color: $white;
 	background:linear-gradient(45deg, #f93a5a, #f7778c);
 	border:1px solid #ef6178;
-	
+
 	&:hover {
     color: $white;
     background: linear-gradient(45deg, #fb3254, #f96d84);
@@ -1597,7 +1597,7 @@ input {
 	color: $white;
 	background:linear-gradient(to right, $pink 0%, #f36eae 100%);
 	border:1px solid $pink;
-	
+
 	&:hover {
     color: $white;
     background: linear-gradient(to right, #de056e 0%, #f565aa 100%);
@@ -1617,7 +1617,7 @@ input {
 	color: $white;
 	background:linear-gradient(to right, $purple 0%, #884af1 100%);
 	border:1px solid $purple;
-	
+
 	&:hover {
     color: $white;
     background: linear-gradient(to right, #6437b3 0%, #7d40e4 100%);
@@ -1636,7 +1636,7 @@ input {
 	color: $white;
 	background: linear-gradient(to left, #efa65f, #f76a2d);
 	border:1px solid #efa65f;
-	
+
 	&:hover {
     color: $white;
     background: linear-gradient(to left, #efa359, #f56729);
@@ -1655,7 +1655,7 @@ input {
 	color: $white;
 	background: linear-gradient(to left, #48d6a8 0%, #029666 100%);
 	border:1px solid #3dc59a;
-	
+
 	&:hover {
     color: $white;
     background: linear-gradient(to left, #3ed0a1 0%, #039062 100%);
@@ -1675,7 +1675,7 @@ input {
 	color: $white;
 	background: linear-gradient(to right, #0296ce 0%, #38c6f7 100%);
 	border:1px solid #29b9ec;
-	
+
 	&:hover {
     color: $white;
     background: linear-gradient(to right, #0993c7 0%, #22b7ea 100%);
@@ -1694,7 +1694,7 @@ input {
 	color: $black;
 	background: linear-gradient(120deg, #cdd2de 0%, $gray-100 100%);
 	border:1px solid #cdd2de;
-	
+
 	&:hover {
     color: $black;
     background: linear-gradient(120deg, #c1c7d6 0%, #e0e5f1 100%);
@@ -1713,7 +1713,7 @@ input {
 	color: $white;
 	background: linear-gradient(60deg, #29323c 0%, #485563 100%);
 	border:1px solid #29323c;
-	
+
 	&:hover {
     color: $white;
     background: linear-gradient(60deg, #212931 0%, #424f5d 100%);
@@ -1733,7 +1733,7 @@ input {
 	color: $white;
 	background: linear-gradient(to right, #636f8e 0%, #acb8da 100%);
 	border:1px solid #9aa6c7;
-	
+
 	&:hover {
     color: $white;
     background: linear-gradient(to right, #596586 0%, #92a0ca 100%);

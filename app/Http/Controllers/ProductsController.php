@@ -74,25 +74,26 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Products $products)
     {
+        // return $request;
         $this->validate(
             $request,
             [
-                'Product_name' => 'required|max:255|unique:Products,Product_name,' . $request->id,
+                'product_name' => 'required|max:255|unique:products,product_name,' . $request->id,
 
             ],
             [
 
-                'Product_name.required' => 'يرجي ادخال اسم القسم',
-                'Product_name.unique' => 'اسم القسم مسجل مسبقا',
+                'product_name.required' => 'يرجي ادخال اسم القسم',
+                'product_name.unique' => 'اسم القسم مسجل مسبقا',
 
             ]
         );
         $update = Products::findOrFail($request->id);
-        $update->Product_name = $request->input('Product_name');
+        $update->product_name = $request->input('product_name');
         $update->description = $request->input('description');
-        $update->created_by = (Auth::user()->name);
+        // $update->section_id = $request->input('section_id');
         $update->save();
-        return redirect('/Products')->with('edit', 'تم تعديل القسم بنجاح');
+        return redirect('/products')->with('edit', 'تم تعديل القسم بنجاح');
     }
 
     /**
