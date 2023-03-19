@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\invoices;
+use App\Models\Products;
+use App\Models\sections;
 use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
@@ -20,9 +22,15 @@ class InvoicesController extends Controller
      */
     public function create()
     {
-        //
+        $sections = sections::all();
+        return view('invoices.add_invoice', compact('sections'));
     }
 
+    public function getProducts($id)
+    {
+        $products = Products::where('section_id', $id)->pluck('product_name', 'id');
+        return json_decode($products);
+    }
     /**
      * Store a newly created resource in storage.
      */

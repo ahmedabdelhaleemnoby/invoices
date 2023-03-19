@@ -80,13 +80,13 @@ class ProductsController extends Controller
         $this->validate(
             $request,
             [
-                'product_name' => 'required|max:255|unique:products,product_name,' . $request->id,
+                'product_name' => 'required|max:255',
 
             ],
             [
 
                 'product_name.required' => 'يرجي ادخال اسم القسم',
-                'product_name.unique' => 'اسم القسم مسجل مسبقا',
+                // 'product_name.unique' => 'اسم القسم مسجل مسبقا',
 
             ]
         );
