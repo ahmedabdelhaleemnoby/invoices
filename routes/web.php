@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoicesController;
+use App\Http\Controllers\InvoicesDetailsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionsController;
@@ -39,4 +40,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('products', ProductsController::class);
 });
 Route::get('/section/{id}', [InvoicesController::class, 'getProducts']);
+Route::get('/InvoicesDetails/{id}', [InvoicesDetailsController::class, 'edit']);
 Route::get('/{page}', [AdminController::class, 'index']);

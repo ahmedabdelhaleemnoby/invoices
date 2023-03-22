@@ -28,7 +28,16 @@
 <!-- breadcrumb -->
 @endsection
 @section('content')
-
+@if($errors->any())
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    @foreach ($errors->all() as $error)
+    <strong>{{ $error }}</strong>
+    @endforeach
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
 @if (session()->has('Add'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>{{ session()->get('Add') }}</strong>
@@ -45,7 +54,7 @@
         <div class="card">
             <div class="card-body">
                 <form action="{{ route('invoices.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
-                    {{ csrf_field() }}
+                    @csrf
                     {{-- 1 --}}
 
                     <div class="row">
@@ -113,6 +122,7 @@
                                 <option value="" selected disabled>حدد نسبة الضريبة</option>
                                 <option value=" 5%">5%</option>
                                 <option value="10%">10%</option>
+                                <option value="15%">15%</option>
                             </select>
                         </div>
 
