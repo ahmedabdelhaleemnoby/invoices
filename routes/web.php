@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\InvoicesAttachmentsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\InvoicesDetailsController;
 use App\Http\Controllers\ProductsController;
@@ -38,7 +39,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('invoices', InvoicesController::class);
     Route::resource('sections', SectionsController::class);
     Route::resource('products', ProductsController::class);
+    Route::resource('attachments', InvoicesAttachmentsController::class);
+    Route::post('delete_file', [InvoicesAttachmentsController::class, 'destroy'])->name('delete_file');
+    Route::get('/section/{id}', [InvoicesController::class, 'getProducts']);
+    Route::get('/InvoicesDetails/{id}', [InvoicesDetailsController::class, 'edit']);
+    Route::get('View_file/{invoice_number}/{file_name}', [InvoicesAttachmentsController::class, 'open_file']);
+    Route::get('download/{invoice_number}/{file_name}', [InvoicesAttachmentsController::class, 'download_file']);
+    Route::get('/{page}', [AdminController::class, 'index']);
 });
-Route::get('/section/{id}', [InvoicesController::class, 'getProducts']);
-Route::get('/InvoicesDetails/{id}', [InvoicesDetailsController::class, 'edit']);
-Route::get('/{page}', [AdminController::class, 'index']);

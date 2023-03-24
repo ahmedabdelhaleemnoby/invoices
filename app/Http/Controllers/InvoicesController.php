@@ -69,18 +69,13 @@ class InvoicesController extends Controller
         $createDetails->user = Auth::user()->name;
         $createDetails->save();
         if ($request->hasFile('pic')) {
-            // $this->validate(
-            //     $request,
-            //     [
-            //         'pic' => 'required|min:pdf|max:10000',
-            //     ],
-            //     [
+            $this->validate($request, [
 
-            //         'pic.mimes' => 'يرجي حفط المرفق pdf',
-            //         // 'product_name.unique' => 'اسم المنتج مسجل مسبقا',
+                'file_name' => 'mimes:pdf,jpeg,png,jpg',
 
-            //     ]
-            // );
+            ], [
+                'file_name.mimes' => 'صيغة المرفق يجب ان تكون   pdf, jpeg , png , jpg',
+            ]);
 
             $invoice_id = Invoices::latest()->first()->id;
             $image = $request->file('pic');

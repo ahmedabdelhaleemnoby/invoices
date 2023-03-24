@@ -195,22 +195,22 @@
                                     <div class="tab-pane" id="tab6">
                                         <!--المرفقات-->
                                         <div class="card card-statistics">
-                                            @can('اضافة مرفق')
+
                                             <div class="card-body">
                                                 <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
                                                 <h5 class="card-title">اضافة مرفقات</h5>
-                                                <form method="post" action="{{ url('/InvoiceAttachments') }}" enctype="multipart/form-data">
+                                                <form method="post" action="{{ route('attachments.store') }}" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="customFile" name="file_name" required>
                                                         <input type="hidden" id="customFile" name="invoice_number" value="{{ $invoices->invoice_number }}">
                                                         <input type="hidden" id="invoice_id" name="invoice_id" value="{{ $invoices->id }}">
-                                                        <label class="custom-file-label" for="customFile">حدد
-                                                            المرفق</label>
+                                                        <label class="custom-file-label" for="customFile">حدد المرفق</label>
                                                     </div><br><br>
                                                     <button type="submit" class="btn btn-primary btn-sm " name="uploadedFile">تاكيد</button>
                                                 </form>
                                             </div>
+                                            @can('اضافة مرفق')
                                             @endcan
                                             <br>
 
@@ -242,8 +242,8 @@
                                                                 <a class="btn btn-outline-info btn-sm" href="{{ url('download') }}/{{ $invoices->invoice_number }}/{{ $attachment->file_name }}" role="button"><i class="fas fa-download"></i>&nbsp;
                                                                     تحميل</a>
 
-                                                                @can('حذف المرفق')
                                                                 <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-file_name="{{ $attachment->file_name }}" data-invoice_number="{{ $attachment->invoice_number }}" data-id_file="{{ $attachment->id }}" data-target="#delete_file">حذف</button>
+                                                                @can('حذف المرفق')
                                                                 @endcan
 
                                                             </td>
@@ -280,17 +280,17 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="post">
-
+            <form action="{{ route('delete_file') }}" method="post">
                 @csrf
+
                 <div class="modal-body">
                     <p class="text-center">
                     <h6 style="color:red"> هل انت متاكد من عملية حذف المرفق ؟</h6>
                     </p>
 
                     <input type="hidden" name="id_file" id="id_file" value="">
-                    <input type="hidden" name="file_name" id="file_name" value="">
-                    <input type="hidden" name="invoice_number" id="invoice_number" value="">
+                    <input type="text" name="file_name" id="file_name" value="" disabled>
+                    <input type="text" name="invoice_number" id="invoice_number" value="" disabled>
 
                 </div>
                 <div class="modal-footer">
@@ -305,7 +305,7 @@
 <!-- Container closed -->
 </div>
 <!-- main-content closed -->
-@endsection
+@stop
 @section('js')
 <!--Internal  Datepicker js -->
 <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
