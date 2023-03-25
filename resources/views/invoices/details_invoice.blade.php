@@ -287,10 +287,10 @@
                     <p class="text-center">
                     <h6 style="color:red"> هل انت متاكد من عملية حذف المرفق ؟</h6>
                     </p>
-
+                    <label id="file_name_label"></label>
                     <input type="hidden" name="id_file" id="id_file" value="">
-                    <input type="text" name="file_name" id="file_name" value="" disabled>
-                    <input type="text" name="invoice_number" id="invoice_number" value="" disabled>
+                    <input type="hidden" name="file_name" id="file_name" value="">
+                    <input type="hidden" name="invoice_number" id="invoice_number" value="">
 
                 </div>
                 <div class="modal-footer">
@@ -334,6 +334,7 @@
 
         modal.find('.modal-body #id_file').val(id_file);
         modal.find('.modal-body #file_name').val(file_name);
+        modal.find('.modal-body #file_name_label').text(file_name);
         modal.find('.modal-body #invoice_number').val(invoice_number);
     })
 </script>

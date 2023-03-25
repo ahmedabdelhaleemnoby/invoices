@@ -16,20 +16,6 @@ class InvoicesAttachmentsController extends Controller
     {
         //
     }
-    public function open_file($invoice_number, $file_name)
-
-    {
-        $path = public_path() . '/Attachments';
-        $files = $path . '/' . $invoice_number . '/' . $file_name;
-        return response()->file($files);
-    }
-    public function download_file($invoice_number, $file_name)
-
-    {
-        $path = public_path() . '/Attachments';
-        $contents = $path . '/' . $invoice_number . '/' . $file_name;
-        return response()->download($contents);
-    }
     /**
      * Show the form for creating a new resource.
      */
@@ -43,13 +29,14 @@ class InvoicesAttachmentsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        // return $request;
+        // $this->validate($request, [
 
-            'file_name' => 'mimes:pdf,jpeg,png,jpg',
+        //     'file_name' => 'mimes:pdf,jpeg,png,jpg',
 
-        ], [
-            'file_name.mimes' => 'صيغة المرفق يجب ان تكون   pdf, jpeg , png , jpg',
-        ]);
+        // ], [
+        //     'file_name.mimes' => 'صيغة المرفق يجب ان تكون   pdf, jpeg , png , jpg',
+        // ]);
 
         $image = $request->file('file_name');
         $file_name = $image->getClientOriginalName();
@@ -100,6 +87,21 @@ class InvoicesAttachmentsController extends Controller
         // return $request;
         $delete = InvoicesAttachments::findOrFail($request->id_file);
         $delete->delete();
+        Storage::disk('public_uploads')->delete($request->invoice_number . '/' . $request->file_name);
         return redirect()->back()->with('delete', 'تم حذف المرفق بنجاح');
+    }
+    public function open_file($invoice_number, $file_name)
+
+    {
+        $path = public_path() . '/Attachments';
+        $files = $path . '/' . $invoice_number . '/' . $file_name;
+        return response()->file($files);
+    }
+    public function download_file($invoice_number, $file_name)
+
+    {
+        $path = public_path() . '/Attachments';
+        $contents = $path . '/' . $invoice_number . '/' . $file_name;
+        return response()->download($contents);
     }
 }
