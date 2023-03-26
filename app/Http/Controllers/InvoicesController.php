@@ -108,9 +108,12 @@ class InvoicesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(invoices $invoices)
+    public function edit($invoices)
     {
-        //
+        // return $invoices;
+        $invoices = invoices::where('id', $invoices)->first();
+        $sections = sections::all();
+        return view('invoices.edit_invoice', compact('sections', 'invoices'));
     }
 
     /**

@@ -131,7 +131,7 @@
                                     <div class="dropdown">
                                         <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary btn-sm" data-toggle="dropdown" type="button">العمليات<i class="fas fa-caret-down ml-1"></i></button>
                                         <div class="dropdown-menu tx-13">
-                                            <a class="dropdown-item" href=" {{ url('edit_invoice') }}/{{ $invoice->id }}">تعديل الفاتورة</a>
+                                            <a class="dropdown-item" href=" {{ url('invoices') }}/{{ $invoice->id }}/edit">تعديل الفاتورة</a>
                                             @can('تعديل الفاتورة')
                                             @endcan
 
@@ -143,12 +143,12 @@
                                             <a class="dropdown-item" href="{{ URL::route('Status_show', [$invoice->id]) }}"><i class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp;تغير حالة الدفع</a>
                                             @endcan
 
-                                            <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}" data-toggle="modal" data-target="#Transfer_invoice"><i class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي الارشيف</a>
                                             @can('ارشفة الفاتورة')
+                                            <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}" data-toggle="modal" data-target="#Transfer_invoice"><i class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي الارشيف</a>
                                             @endcan
 
-                                            <a class="dropdown-item" href="Print_invoice/{{ $invoice->id }}"><i class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة الفاتورة</a>
                                             @can('طباعةالفاتورة')
+                                            <a class="dropdown-item" href="Print_invoice/{{ $invoice->id }}"><i class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة الفاتورة</a>
                                             @endcan
                                         </div>
                                     </div>
