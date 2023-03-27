@@ -29,14 +29,7 @@
 @endsection
 @section('content')
 
-@if (session()->has('edit'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>{{ session()->get('edit') }}</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-@endif
+
 
 <!-- row -->
 <div class="row">
@@ -45,9 +38,9 @@
         <div class="card">
             <div class="card-body">
 
-                <form action="{{ url('invoices/update') }}" method="post" autocomplete="off">
-                    {{ method_field('patch') }}
-                    {{ csrf_field() }}
+                <form action="{{route('invoices.update',['invoice' => $invoices->id ])}}" method="post" autocomplete="off">
+                    @csrf
+                    @method('PUT')
                     {{-- 1 --}}
                     <div class="row">
                         <div class="col">

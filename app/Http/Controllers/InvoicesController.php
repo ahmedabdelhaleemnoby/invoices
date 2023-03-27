@@ -94,7 +94,7 @@ class InvoicesController extends Controller
             $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
         }
 
-        return redirect('/invoices')->with('add', 'تم إضافة الفاتورة بنجاح');
+        return redirect('/invoices')->with('Add', 'تم إضافة الفاتورة بنجاح');
     }
 
     /**
@@ -119,16 +119,33 @@ class InvoicesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, invoices $invoices)
+    public function update(Request $request, $invoices)
     {
-        //
+        // return $request;
+        $updateInvoices = invoices::findOrFail($invoices);
+        $updateInvoices->invoice_number = $request->input('invoice_number');
+        $updateInvoices->invoice_Date = $request->input('invoice_Date');
+        $updateInvoices->Due_date = $request->input('Due_date');
+        $updateInvoices->product = $request->input('product');
+        $updateInvoices->section_id = $request->input('Section');
+        $updateInvoices->Amount_collection = $request->input('Amount_collection');
+        $updateInvoices->Amount_Commission = $request->input('Amount_Commission');
+        $updateInvoices->Discount = $request->input('Discount');
+        $updateInvoices->Value_VAT = $request->input('Value_VAT');
+        $updateInvoices->Rate_VAT = $request->input('Rate_VAT');
+        $updateInvoices->Total = $request->input('Total');
+        $updateInvoices->note = $request->input('note');
+        $updateInvoices->save();
+        return redirect('/invoices')->with('update', 'تم تعديل الفاتورة بنجاح');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(invoices $invoices)
+    public function destroy(Request $request, $invoices)
     {
-        //
+        return $request;
+        $invoices = invoices::where('id', $request->invoice_id)->first();
+        $Details = InvoicesDetails::where('invoice_id', $invoices)->first();
     }
 }

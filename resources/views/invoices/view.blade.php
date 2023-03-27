@@ -61,8 +61,33 @@
     }
 </script>
 @endif
+@if (session()->has('update'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{ session()->get('update') }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
 
-
+@if($errors->any())
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    @foreach ($errors->all() as $error)
+    <strong>{{ $error }}</strong>
+    @endforeach
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+@if (session()->has('Add'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{ session()->get('Add') }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
 <!-- row -->
 <div class="row">
     <!--div-->
@@ -74,8 +99,8 @@
                 <a href="invoices/create" class="modal-effect btn btn-sm btn-primary" style="color:white"><i class="fas fa-plus"></i>&nbsp; اضافة فاتورة</a>
 
                 @can('تصدير EXCEL')
-                @endcan
                 <a class="modal-effect btn btn-sm btn-primary" href="{{ url('export_invoices') }}" style="color:white"><i class="fas fa-file-download"></i>&nbsp;تصدير اكسيل</a>
+                @endcan
 
             </div>
             <div class="card-body">
@@ -175,13 +200,13 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <form action="{{ route('invoices.destroy', 'test') }}" method="post">
+                <form action="{{ route('invoices.destroy',  $invoice->id ) }}" method="post">
                     @method('Delete')
                     @csrf
             </div>
             <div class="modal-body">
                 هل انت متاكد من عملية الحذف ؟
-                <input type="hidden" name="invoice_id" id="invoice_id" value="">
+                <input type="text" name="invoice_id" id="invoice_id" value="">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
