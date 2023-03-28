@@ -119,7 +119,7 @@
                             {{ $invoices->note }}</textarea>
                         </div>
                     </div><br>
-
+                    @if($invoices->Value_Status == 2)
                     <div class="row">
                         <div class="col">
                             <label for="exampleTextarea">حالة الدفع</label>
@@ -141,6 +141,36 @@
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary">تحديث حالة الدفع</button>
                     </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">تحديث حالة الدفع</button>
+                    </div>
+                    @elseif($invoices->Value_Status == 3)
+                    <div class="row">
+                        <div class="col">
+                            <label for="exampleTextarea">حالة الدفع</label>
+                            <select class="form-control" id="Status" name="Status" required>
+                                <option selected="true" disabled="disabled">-- حدد حالة الدفع --</option>
+                                <option value="مدفوعة">مدفوعة</option>
+                                <!-- <option value="مدفوعة جزئيا">مدفوعة جزئيا</option> -->
+                            </select>
+                        </div>
+
+                        <div class="col">
+                            <label>تاريخ الدفع</label>
+                            <input class="form-control fc-datepicker" name="Payment_Date" placeholder="YYYY-MM-DD" type="text" value="{{ date('Y-m-d') }}" required>
+                        </div>
+
+
+                    </div><br>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">تحديث حالة الدفع</button>
+                    </div>
+                    @else
+                    <h3>تم دفع هذه الفاتورة كلياً</h3>
+                    <div class="d-flex justify-content-center">
+                        <a href="/invoices" class="btn btn-primary">رجوع</a>
+                    </div>
+                    @endif
 
                 </form>
             </div>

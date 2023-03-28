@@ -97,7 +97,7 @@ class SectionsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, sections $sections)
+    public function destroy(Request $request)
     {
         // return $request;
         $delete = sections::findOrFail($request->id);

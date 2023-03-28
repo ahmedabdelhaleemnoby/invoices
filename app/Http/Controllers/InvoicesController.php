@@ -149,12 +149,24 @@ class InvoicesController extends Controller
     {
         // return $request;
         $invoices = invoices::where('id', $request->invoice_id)->first();
-        // $Details = InvoicesDetails::where('invoice_id', $invoices)->first();
-        // if (!empty($Details->invoice_number)) {
-        // Storage::disk('public_uploads')->deleteDirectory($Details->invoice_number);
-        // }
-        // $invoices->forceDelete();
-        $invoices->Delete();
+        $Details = InvoicesDetails::where('id_Invoice', $invoices)->first();
+        $id_page = $request->id_page;
+
+
+        if (!$id_page == 2) {
+
+            if (!empty($Details->invoice_number)) {
+
+                Storage::disk('public_uploads')->deleteDirectory($Details->invoice_number);
+            }
+
+            $invoices->forceDelete();
+            return redirect('/invoices')->with('delete_invoice', 'تم حذف الفاتورة بنجاح');
+        } else {
+
+            $invoices->delete();
+            return redirect('/Archive')->with('archive_invoice', 'تم حذف الفاتورة بنجاح');
+        }
         return redirect('/invoices')->with('delete_invoice', 'تم حذف الفاتورة بنجاح');
     }
     public function Status_Update($id, Request $request)
@@ -200,5 +212,36 @@ class InvoicesController extends Controller
             ]);
         }
         return redirect('/invoices')->with('Status_Update', 'تم نعديل حالة الفاتورة بنجاح');
+    }
+
+    public function Invoice_Paid()
+    {
+        // return 'Invoice_Paid';
+        $invoices = Invoices::where('Value_Status', 1)->get();
+        return view('invoices.invoices_paid', compact('invoices'));
+    }
+
+    public function Invoice_unPaid()
+    {
+        $invoices = Invoices::where('Value_Status', 2)->get();
+        return view('invoices.invoices_unpaid', compact('invoices'));
+    }
+
+    public function Invoice_Partial()
+    {
+        $invoices = Invoices::where('Value_Status', 3)->get();
+        return view('invoices.invoices_Partial', compact('invoices'));
+    }
+    public function Archive_index()
+    {
+        $invoices = invoices::onlyTrashed()->get();
+        return view('Invoices.Archive_Invoices', compact('invoices'));
+    }
+    public function Archive_update(Request $request)
+    {
+        // return $request;
+        $id = $request->invoice_id;
+        $flight = Invoices::withTrashed()->where('id', $id)->restore();
+        return redirect('/invoices')->with('restore_invoice', 'تم نعديل حالة الفاتورة بنجاح');
     }
 }

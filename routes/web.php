@@ -48,5 +48,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/InvoicesDetails/{id}', [InvoicesDetailsController::class, 'edit']);
     Route::get('View_file/{invoice_number}/{file_name}', [InvoicesAttachmentsController::class, 'open_file']);
     Route::get('download/{invoice_number}/{file_name}', [InvoicesAttachmentsController::class, 'download_file']);
+    Route::get('Invoice_Paid', [InvoicesController::class, 'Invoice_Paid']);
+    Route::get('Invoice_UnPaid', [InvoicesController::class, 'Invoice_UnPaid']);
+    Route::get('Invoice_Partial', [InvoicesController::class, 'Invoice_Partial']);
+    Route::post('Archive_update', [InvoicesController::class, 'Archive_update'])->name('Archive_update');
+    Route::get('Archive', [InvoicesController::class, 'Archive_index'])->name('Archive_index');
     Route::get('/{page}', [AdminController::class, 'index']);
 });

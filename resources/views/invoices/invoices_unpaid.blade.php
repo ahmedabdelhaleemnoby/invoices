@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-قائمة الفواتير
+الفواتير الغير مدفوعة
 @stop
 @section('css')
 <!-- Internal Data table css -->
@@ -18,8 +18,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ قائمة
-                الفواتير</span>
+            <h4 class="content-title mb-0 my-auto">الفواتير</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ الفواتير الغير مدفوعة</span>
         </div>
     </div>
 
@@ -172,8 +171,8 @@
                                             @can('تغير حالة الدفع')
                                             @endcan
 
-                                            <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}" data-toggle="modal" data-target="#Transfer_invoice"><i class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي الارشيف</a>
                                             @can('ارشفة الفاتورة')
+                                            <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}" data-toggle="modal" data-target="#Transfer_invoice"><i class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي الارشيف</a>
                                             @endcan
 
                                             @can('طباعةالفاتورة')
@@ -234,7 +233,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <form action="{{ route('invoices.destroy',  '$invoice->id' ) }}" method="post">
+                <form action="{{ route('invoices.destroy', 'test') }}" method="post">
                     @method('Delete')
                     @csrf
             </div>
