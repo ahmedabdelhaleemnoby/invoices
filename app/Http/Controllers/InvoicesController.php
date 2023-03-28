@@ -149,14 +149,14 @@ class InvoicesController extends Controller
     {
         // return $request;
         $invoices = invoices::where('id', $request->invoice_id)->first();
-        $Details = InvoicesDetails::where('id_Invoice', $invoices)->first();
+        $Details = InvoicesDetails::where('id_Invoice', $request->invoice_id)->first();
         $id_page = $request->id_page;
 
 
         if (!$id_page == 2) {
 
+            // return $Details->invoice_number;
             if (!empty($Details->invoice_number)) {
-
                 Storage::disk('public_uploads')->deleteDirectory($Details->invoice_number);
             }
 
@@ -168,6 +168,17 @@ class InvoicesController extends Controller
             return redirect('/Archive')->with('archive_invoice', 'تم حذف الفاتورة بنجاح');
         }
         return redirect('/invoices')->with('delete_invoice', 'تم حذف الفاتورة بنجاح');
+    }
+    public function destroy2(Request $request)
+    {
+        // return 'destroy2';
+        $invoices = invoices::withTrashed()->where('id', $request->invoice_id)->first();
+        $Details = InvoicesDetails::where('id_Invoice', $request->invoice_id)->first();
+        if (!empty($Details->invoice_number)) {
+            Storage::disk('public_uploads')->deleteDirectory($Details->invoice_number);
+        }
+        $invoices->forceDelete();
+        return redirect('/Archive')->with('delete_invoice', 'تم حذف الفاتورة بنجاح');
     }
     public function Status_Update($id, Request $request)
     {

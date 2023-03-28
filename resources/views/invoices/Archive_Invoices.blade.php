@@ -146,8 +146,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <form action="{{ route('invoices.destroy',  '$invoice->id' ) }}" method="post">
-                    @method('Delete')
+                <form action="{{ route('invoices.destroy2',  '$invoice->id' ) }}" method="post">
                     @csrf
             </div>
             <div class="modal-body">

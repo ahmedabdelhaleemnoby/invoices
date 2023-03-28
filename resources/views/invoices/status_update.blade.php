@@ -141,9 +141,6 @@
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary">تحديث حالة الدفع</button>
                     </div>
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">تحديث حالة الدفع</button>
-                    </div>
                     @elseif($invoices->Value_Status == 3)
                     <div class="row">
                         <div class="col">
