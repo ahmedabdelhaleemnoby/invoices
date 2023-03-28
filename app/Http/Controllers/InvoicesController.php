@@ -9,6 +9,7 @@ use App\Models\Products;
 use App\Models\sections;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class InvoicesController extends Controller
 {
@@ -100,9 +101,11 @@ class InvoicesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(invoices $invoices)
+    public function show($invoice)
     {
-        //
+        $invoices = invoices::findOrFail($invoice);
+        // return $invoices;
+        return view('invoices.status_update', compact('invoices'));
     }
 
     /**
@@ -144,8 +147,58 @@ class InvoicesController extends Controller
      */
     public function destroy(Request $request, $invoices)
     {
-        return $request;
+        // return $request;
         $invoices = invoices::where('id', $request->invoice_id)->first();
-        $Details = InvoicesDetails::where('invoice_id', $invoices)->first();
+        // $Details = InvoicesDetails::where('invoice_id', $invoices)->first();
+        // if (!empty($Details->invoice_number)) {
+        // Storage::disk('public_uploads')->deleteDirectory($Details->invoice_number);
+        // }
+        // $invoices->forceDelete();
+        $invoices->Delete();
+        return redirect('/invoices')->with('delete_invoice', 'تم حذف الفاتورة بنجاح');
+    }
+    public function Status_Update($id, Request $request)
+    {
+        // return $request->invoice_id;
+        $invoices = invoices::findOrFail($id);
+
+        if ($request->Status === 'مدفوعة') {
+
+            $invoices->update([
+                'Value_Status' => 1,
+                'Status' => $request->Status,
+                'Payment_Date' => $request->Payment_Date,
+            ]);
+
+            InvoicesDetails::create([
+                'id_Invoice' => $request->invoice_id,
+                'invoice_number' => $request->invoice_number,
+                'product' => $request->product,
+                'Section' => $request->Section,
+                'Status' => $request->Status,
+                'Value_Status' => 1,
+                'note' => $request->note,
+                'Payment_Date' => $request->Payment_Date,
+                'user' => (Auth::user()->name),
+            ]);
+        } else {
+            $invoices->update([
+                'Value_Status' => 3,
+                'Status' => $request->Status,
+                'Payment_Date' => $request->Payment_Date,
+            ]);
+            InvoicesDetails::create([
+                'id_Invoice' => $request->invoice_id,
+                'invoice_number' => $request->invoice_number,
+                'product' => $request->product,
+                'Section' => $request->Section,
+                'Status' => $request->Status,
+                'Value_Status' => 3,
+                'note' => $request->note,
+                'Payment_Date' => $request->Payment_Date,
+                'user' => (Auth::user()->name),
+            ]);
+        }
+        return redirect('/invoices')->with('Status_Update', 'تم نعديل حالة الفاتورة بنجاح');
     }
 }

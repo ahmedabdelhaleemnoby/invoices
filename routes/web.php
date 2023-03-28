@@ -40,6 +40,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('sections', SectionsController::class);
     Route::resource('products', ProductsController::class);
     Route::resource('attachments', InvoicesAttachmentsController::class);
+    Route::get('/InvoicesDetails/{id}', [InvoicesDetailsController::class, 'edit']);
+    Route::post('/Status_Update/{id}', [InvoicesController::class, 'Status_Update'])->name('Status_Update');
     Route::post('attachments.store', [InvoicesAttachmentsController::class, 'store'])->name('attachments.store');
     Route::post('delete_file', [InvoicesAttachmentsController::class, 'destroy'])->name('delete_file');
     Route::get('/section/{id}', [InvoicesController::class, 'getProducts']);

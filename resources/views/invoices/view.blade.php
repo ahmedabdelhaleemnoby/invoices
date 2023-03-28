@@ -33,7 +33,7 @@
     window.onload = function() {
         notif({
             msg: "تم حذف الفاتورة بنجاح",
-            type: "success"
+            type: "error"
         })
     }
 </script>
@@ -62,12 +62,14 @@
 </script>
 @endif
 @if (session()->has('update'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>{{ session()->get('update') }}</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
+<script>
+    window.onload = function() {
+        notif({
+            msg: "تم تعديل الفاتورة بنجاح",
+            type: "warning"
+        })
+    }
+</script>
 @endif
 
 @if($errors->any())
@@ -81,12 +83,14 @@
 </div>
 @endif
 @if (session()->has('Add'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>{{ session()->get('Add') }}</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
+<script>
+    window.onload = function() {
+        notif({
+            msg: "تم إضافة الفاتورة بنجاح",
+            type: "success"
+        })
+    }
+</script>
 @endif
 <!-- row -->
 <div class="row">
@@ -160,12 +164,12 @@
                                             @can('تعديل الفاتورة')
                                             @endcan
 
-                                            <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}" data-toggle="modal" data-target="#delete_invoice"><i class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف الفاتورة</a>
+                                            <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}" data-file_name="{{ $invoice->invoice_number }}" data-toggle="modal" data-target="#delete_invoice"><i class="text-danger fas fa-trash-alt"></i>&nbsp;&nbsp;حذف الفاتورة</a>
                                             @can('حذف الفاتورة')
                                             @endcan
 
+                                            <a class="dropdown-item" href="{{ route('invoices.show',  $invoice->id ) }}"><i class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp;تغير حالة الدفع</a>
                                             @can('تغير حالة الدفع')
-                                            <a class="dropdown-item" href="{{ URL::route('Status_show', [$invoice->id]) }}"><i class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp;تغير حالة الدفع</a>
                                             @endcan
 
                                             @can('ارشفة الفاتورة')
@@ -200,13 +204,16 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <form action="{{ route('invoices.destroy',  $invoice->id ) }}" method="post">
+                <form action="{{ route('invoices.destroy',  '$invoice->id' ) }}" method="post">
                     @method('Delete')
                     @csrf
             </div>
             <div class="modal-body">
-                هل انت متاكد من عملية الحذف ؟
-                <input type="text" name="invoice_id" id="invoice_id" value="">
+                هل انت متاكد من عملية حذف الفاتورة رقم
+                <label id="file_name_label"></label>
+                ؟
+                <input type="hidden" name="invoice_id" id="invoice_id" value="">
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
@@ -281,8 +288,10 @@
     $('#delete_invoice').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
         var invoice_id = button.data('invoice_id')
+        var file_name = button.data('file_name')
         var modal = $(this)
         modal.find('.modal-body #invoice_id').val(invoice_id);
+        modal.find('.modal-body #file_name_label').text(file_name);
     })
 </script>
 
