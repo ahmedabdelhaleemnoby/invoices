@@ -24,7 +24,7 @@
         <div class="card">
             <div class="card-body">
                 <form action="{{ route('Status_Update', ['id' => $invoices->id]) }}" method="post" autocomplete="off">
-                    {{ csrf_field() }}
+                    @csrf
                     {{-- 1 --}}
                     <div class="row">
                         <div class="col">

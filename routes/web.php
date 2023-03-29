@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Invoice_UnPaid', [InvoicesController::class, 'Invoice_UnPaid']);
     Route::get('Invoice_Partial', [InvoicesController::class, 'Invoice_Partial']);
     Route::post('Archive_update', [InvoicesController::class, 'Archive_update'])->name('Archive_update');
+    Route::get('Print_invoice/{id}', [InvoicesController::class, 'Print_invoice'])->name('Print_invoice');
     Route::post('invoices.destroy2', [InvoicesController::class, 'destroy2'])->name('invoices.destroy2');
     Route::get('Archive', [InvoicesController::class, 'Archive_index'])->name('Archive_index');
     Route::get('/{page}', [AdminController::class, 'index']);

@@ -176,8 +176,8 @@
                                             @can('ارشفة الفاتورة')
                                             @endcan
 
-                                            @can('طباعةالفاتورة')
                                             <a class="dropdown-item" href="Print_invoice/{{ $invoice->id }}"><i class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة الفاتورة</a>
+                                            @can('طباعةالفاتورة')
                                             @endcan
                                         </div>
                                     </div>

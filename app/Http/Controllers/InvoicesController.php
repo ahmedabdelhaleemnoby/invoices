@@ -7,7 +7,10 @@ use App\Models\InvoicesAttachments;
 use App\Models\InvoicesDetails;
 use App\Models\Products;
 use App\Models\sections;
+use App\Models\User;
+use App\Notifications\AddInvoice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -89,11 +92,17 @@ class InvoicesController extends Controller
             $attachments->invoice_id = $invoice_id;
             $attachments->Created_by = Auth::user()->name;
             $attachments->save();
-
             // move pic
             $imageName = $request->pic->getClientOriginalName();
             $request->pic->move(public_path('Attachments/' . $invoice_number), $imageName);
         }
+
+        // $user = User::first();
+        // Notification::send($user, new AddInvoice($invoice_id));
+
+        //    $user = User::get();
+        //    $invoices = invoices::latest()->first();
+        //    Notification::send($user, new \App\Notifications\Add_invoice_new($invoices));
 
         return redirect('/invoices')->with('Add', 'تم إضافة الفاتورة بنجاح');
     }
@@ -108,6 +117,11 @@ class InvoicesController extends Controller
         return view('invoices.status_update', compact('invoices'));
     }
 
+    public function Print_invoice($id)
+    {
+        $invoices = invoices::findOrFail($id);
+        return view('invoices.Print_invoice', compact('invoices'));
+    }
     /**
      * Show the form for editing the specified resource.
      */

@@ -171,12 +171,12 @@
                                             @can('تغير حالة الدفع')
                                             @endcan
 
-                                            @can('ارشفة الفاتورة')
                                             <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}" data-toggle="modal" data-target="#Transfer_invoice"><i class="text-warning fas fa-exchange-alt"></i>&nbsp;&nbsp;نقل الي الارشيف</a>
+                                            @can('ارشفة الفاتورة')
                                             @endcan
 
-                                            @can('طباعةالفاتورة')
                                             <a class="dropdown-item" href="Print_invoice/{{ $invoice->id }}"><i class="text-success fas fa-print"></i>&nbsp;&nbsp;طباعة الفاتورة</a>
+                                            @can('طباعةالفاتورة')
                                             @endcan
                                         </div>
                                     </div>
