@@ -6,7 +6,9 @@ use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\InvoicesDetailsController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SectionsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +38,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 Route::group(['middleware' => ['auth']], function () {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
     Route::resource('invoices', InvoicesController::class);
     Route::resource('sections', SectionsController::class);
     Route::resource('products', ProductsController::class);
@@ -57,7 +61,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Archive', [InvoicesController::class, 'Archive_index'])->name('Archive_index');
     Route::get('/{page}', [AdminController::class, 'index']);
 });
-Route::group(['middleware' => ['auth']], function () {
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
-});
+// Route::group(['middleware' => ['auth']], function () {
+//     Route::resource('roles', RoleController::class);
+//     Route::resource('users', UserController::class);
+// });

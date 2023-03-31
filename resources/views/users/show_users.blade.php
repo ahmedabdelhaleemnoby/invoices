@@ -2,7 +2,7 @@
 @section('css')
 
 @section('title')
-المستخدمين - مورا سوفت للادارة الفواتير
+المستخدمين - النوبي سوفت للادارة الفواتير
 @stop
 
 <!-- Internal Data table css -->
@@ -43,8 +43,8 @@
         <div class="card">
             <div class="card-header pb-0">
                 <div class="col-sm-1 col-md-2">
-                    @can('اضافة مستخدم')
                     <a class="btn btn-primary btn-sm" href="{{ route('users.create') }}">اضافة مستخدم</a>
+                    @can('اضافة مستخدم')
                     @endcan
                 </div>
             </div>
@@ -88,12 +88,12 @@
                                 </td>
 
                                 <td>
-                                    @can('تعديل مستخدم')
                                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info" title="تعديل"><i class="las la-pen"></i></a>
+                                    @can('تعديل مستخدم')
                                     @endcan
 
-                                    @can('حذف مستخدم')
                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-user_id="{{ $user->id }}" data-username="{{ $user->name }}" data-toggle="modal" href="#modaldemo8" title="حذف"><i class="las la-trash"></i></a>
+                                    @can('حذف مستخدم')
                                     @endcan
                                 </td>
                             </tr>
