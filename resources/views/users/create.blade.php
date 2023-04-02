@@ -40,7 +40,16 @@
             </ul>
         </div>
         @endif
-
+        @if (session()->has('Add'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "تم إضافة الفاتورة بنجاح",
+                    type: "success"
+                })
+            }
+        </script>
+        @endif
         <div class="card">
             <div class="card-body">
                 <div class="col-lg-12 margin-tb">

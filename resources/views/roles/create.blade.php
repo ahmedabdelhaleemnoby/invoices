@@ -24,6 +24,7 @@
 
 @section('content')
 
+
 @if (count($errors) > 0)
 <div class="alert alert-danger">
     <button aria-label="Close" class="close" data-dismiss="alert" type="button">
@@ -38,7 +39,16 @@
 </div>
 @endif
 
-
+@if (session()->has('Add'))
+<script>
+    window.onload = function() {
+        notif({
+            msg: "تم إضافة الفاتورة بنجاح",
+            type: "success"
+        })
+    }
+</script>
+@endif
 
 
 {!! Form::open(array('route' => 'roles.store','method'=>'POST')) !!}
