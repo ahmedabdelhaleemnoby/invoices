@@ -39,7 +39,7 @@
 </div>
 @endif
 
-@if (session()->has('Add'))
+@if (session()->has('success'))
 <script>
     window.onload = function() {
         notif({
@@ -105,4 +105,6 @@
 @section('js')
 <!-- Internal Treeview js -->
 <script src="{{URL::asset('assets/plugins/treeview/treeview.js')}}"></script>
+<!-- Internal form-elements js -->
+<script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
 @endsection

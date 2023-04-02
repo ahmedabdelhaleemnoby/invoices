@@ -40,11 +40,11 @@
             </ul>
         </div>
         @endif
-        @if (session()->has('Add'))
+        @if (session()->has('success'))
         <script>
             window.onload = function() {
                 notif({
-                    msg: "تم إضافة الفاتورة بنجاح",
+                    msg: "تم اكونت الفاتورة بنجاح",
                     type: "success"
                 })
             }
@@ -131,4 +131,6 @@
 <script src="{{URL::asset('assets/plugins/parsleyjs/parsley.min.js')}}"></script>
 <!-- Internal Form-validation js -->
 <script src="{{URL::asset('assets/js/form-validation.js')}}"></script>
+<!-- Internal form-elements js -->
+<script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
 @endsection
