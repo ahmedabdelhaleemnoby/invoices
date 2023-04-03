@@ -63,10 +63,12 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-header pb-0">
+                @can('اضافة منتج')
                 <div class="d-flex justify-content-between">
                     <a class="btn ripple btn-primary" data-target="#modaldemo1" data-toggle="modal" href="">إضافة منتج</a>
                     <i class="mdi mdi-dots-horizontal text-gray"></i>
                 </div>
+                @endcan
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -90,10 +92,15 @@
                                 <td>{{$product->product_name}}</td>
                                 <td>{{$product->section->section_name}}</td>
                                 <td>{{$product->description}}</td>
-                                <td> <button class="btn btn-outline-success btn-sm" data-name="{{ $product->product_name }}" data-id="{{ $product->id }}" data-section_name="{{ $product->section->section_name }}" data-description="{{ $product->description }}" data-toggle="modal" data-target="#exampleModal2">تعديل</button>
-
+                                <td>
+                                    @can('تعديل منتج')
+                                    <button class="btn btn-outline-success btn-sm" data-name="{{ $product->product_name }}" data-id="{{ $product->id }}" data-section_name="{{ $product->section->section_name }}" data-description="{{ $product->description }}" data-toggle="modal" data-target="#exampleModal2">تعديل</button>
+                                    @endcan
+                                    @can('حذف منتج')
                                     <button class="btn btn-outline-danger btn-sm " data-id="{{ $product->id }}" data-product_name="{{ $product->product_name }}" data-toggle="modal" data-target="#modaldemo9">حذف</button>
+                                    @endcan
                                 </td>
+
                             </tr>
                             @endforeach
                         </tbody>

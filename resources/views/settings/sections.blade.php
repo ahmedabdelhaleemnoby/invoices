@@ -63,10 +63,12 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-header pb-0">
+                @can('اضافة قسم')
                 <div class="d-flex justify-content-between">
                     <a class="btn ripple btn-primary" data-target="#modaldemo1" data-toggle="modal" href="">إضافة قسم</a>
                     <i class="mdi mdi-dots-horizontal text-gray"></i>
                 </div>
+                @endcan
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -89,9 +91,13 @@
                                 <td>{{$section->section_name}}</td>
                                 <td>{{$section->description}}</td>
                                 <!-- <td>{{$section->created_by}}</td> -->
-                                <td> <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" data-id="{{ $section->id }}" data-section_name="{{ $section->section_name }}" data-description="{{ $section->description }}" data-toggle="modal" href="#exampleModal2" title="تعديل"><i class="las la-pen"></i></a>
-
+                                <td>
+                                    @can('تعديل قسم')
+                                    <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" data-id="{{ $section->id }}" data-section_name="{{ $section->section_name }}" data-description="{{ $section->description }}" data-toggle="modal" href="#exampleModal2" title="تعديل"><i class="las la-pen"></i></a>
+                                    @endcan
+                                    @can('حذف قسم')
                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-id="{{ $section->id }}" data-section_name="{{ $section->section_name }}" data-toggle="modal" href="#modaldemo9" title="حذف"><i class="las la-trash"></i></a>
+                                    @endcan
                                 </td>
                             </tr>
                             @endforeach
