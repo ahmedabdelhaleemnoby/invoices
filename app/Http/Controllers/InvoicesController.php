@@ -33,7 +33,7 @@ class InvoicesController extends Controller
         $this->middleware('permission:الفواتير المدفوعة', ['only' => ['Invoice_Paid']]);
         $this->middleware('permission:الفواتير الغير مدفوعة', ['only' => ['Invoice_unPaid']]);
         $this->middleware('permission:الفواتير المدفوعة جزئيا', ['only' => ['Invoice_Partial']]);
-        $this->middleware('permission:ارشيف الفواتير1   ', ['only' => ['Archive_index']]);
+        $this->middleware('permission:ارشيف الفواتير', ['only' => ['Archive_index']]);
     }
     /**
      * Display a listing of the resource.
