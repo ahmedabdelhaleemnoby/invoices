@@ -18,6 +18,25 @@ class InvoicesController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    function __construct()
+    {
+        $this->middleware('permission:الفواتير', ['only' => ['index']]);
+        $this->middleware('permission:اضافة فاتورة', ['only' => ['create', 'store']]);
+        $this->middleware('permission:تعديل الفاتورة', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:حذف المرفق', ['only' => ['destroy']]);
+        $this->middleware('permission:طباعةالفاتورة', ['only' => ['Print_invoice']]);
+        $this->middleware('permission:تغير حالة الدفع', ['only' => ['Status_Update']]);
+        $this->middleware('permission:الفواتير المدفوعة', ['only' => ['Invoice_Paid']]);
+        $this->middleware('permission:الفواتير الغير مدفوعة', ['only' => ['Invoice_unPaid']]);
+        $this->middleware('permission:الفواتير المدفوعة جزئيا', ['only' => ['Invoice_Partial']]);
+        $this->middleware('permission:ارشيف الفواتير1   ', ['only' => ['Archive_index']]);
+    }
+    /**
+     * Display a listing of the resource.
      */
     public function index()
     {
