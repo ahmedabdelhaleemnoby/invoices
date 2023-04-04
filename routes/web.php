@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoicesAttachmentsController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\InvoicesDetailsController;
+use App\Http\Controllers\InvoicesReportController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -61,5 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Print_invoice/{id}', [InvoicesController::class, 'Print_invoice'])->name('Print_invoice');
     Route::post('invoices.destroy2', [InvoicesController::class, 'destroy2'])->name('invoices.destroy2');
     Route::get('Archive', [InvoicesController::class, 'Archive_index'])->name('Archive_index');
+    Route::get('/invoices_report', [InvoicesReportController::class, 'index']);
+    Route::post('/Search_invoices', [InvoicesReportController::class, 'Search_invoices']);
     Route::get('/{page}', [AdminController::class, 'index']);
 });
