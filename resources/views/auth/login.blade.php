@@ -7,6 +7,7 @@
 <link href="{{URL::asset('assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css')}}" rel="stylesheet">
 @endsection
 @section('content')
+
 <div class="container-fluid">
     <div class="row no-gutter">
         <!-- The image half -->
@@ -15,12 +16,21 @@
             <div class="login d-flex align-items-center py-2">
                 <!-- Demo content-->
                 <div class="container p-0">
+
                     <div class="row">
                         <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
                             <div class="card-sigin">
                                 <div class="mb-5 d-flex"> <a href="{{ url('/' . $page='Home') }}"><img src="{{URL::asset('assets/img/brand/favicon.png')}}" class="sign-favicon ht-40" alt="logo"></a>
                                     <h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Noby<span>So</span>ft</h1>
                                 </div>
+                                @if(session()->has('not_active'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>{{ session()->get('not_active') }}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                @endif
                                 <div class="card-sigin">
                                     <div class="main-signup-header">
                                         <h2>مرحبا بك</h2>

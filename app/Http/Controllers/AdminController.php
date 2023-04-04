@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -13,15 +15,34 @@ class AdminController extends Controller
      */
     public function index($id)
     {
-        if(view()->exists($id)){
+        if (view()->exists($id)) {
             return view($id);
-        }
-        else
-        {
+        } else {
             return view('404');
         }
 
-     //   return view($id);
+        //   return view($id);
+    }
+    public function home()
+    {
+        // return view($id);
+        $id = Auth::user()->id;
+        $user = User::findOrFail($id);
+        // return $user->Status;
+        if ($user->Status == 'مفعل') {
+            return view('index');
+        } else {
+
+            Auth::guard('web')->logout();
+
+            // $request->session()->invalidate();
+
+            // $request->session()->regenerateToken();
+
+            return redirect('/login')->with('not_active', 'تم ايقاف تفعيل حسابك');
+        };
+
+        //   return view($id);
     }
 
     /**
