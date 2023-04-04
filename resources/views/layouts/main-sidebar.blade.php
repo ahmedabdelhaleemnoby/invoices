@@ -67,10 +67,10 @@
                     </svg><span class="side-menu__label">التقارير</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     @can('تقرير الفواتير'')
-                    <li><a class="slide-item" href="{{ url('/' . $page='cards') }}">تقارير الفواتير</a></li>
+                    <li><a class="slide-item" href="{{ url('/' . $page='invoices_report') }}">تقارير الفواتير</a></li>
                     @endcan
                     @can('تقرير العملاء')
-                    <li><a class="slide-item" href="{{ url('/' . $page='darggablecards') }}">تقارير العملاء</a></li>
+                    <li><a class="slide-item" href="{{ url('/' . $page='customers_report') }}">تقارير العملاء</a></li>
                     @endcan
 
                 </ul>
