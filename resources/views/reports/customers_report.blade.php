@@ -57,10 +57,7 @@
 
                 <form action="/Search_customers" method="POST" role="search" autocomplete="off">
                     @csrf
-
-
                     <div class="row">
-
                         <div class="col">
                             <label for="inputName" class="control-label">القسم</label>
                             <select name="Section" class="form-control select2" onclick="console.log($(this).val())" onchange="console.log('change is firing')">
