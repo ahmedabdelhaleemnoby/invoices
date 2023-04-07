@@ -126,7 +126,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    @if (isset($details))
+                    @if (isset($invoices))
                     <table id="example" class="table key-buttons text-md-nowrap" style=" text-align: center">
                         <thead>
                             <tr>
@@ -147,7 +147,7 @@
                         </thead>
                         <tbody>
                             <?php $i = 0; ?>
-                            @foreach ($details as $invoice)
+                            @foreach ($invoices as $invoice)
                             <?php $i++; ?>
                             <tr>
                                 <td>{{ $i }}</td>

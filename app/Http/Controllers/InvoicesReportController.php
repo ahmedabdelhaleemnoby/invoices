@@ -21,9 +21,9 @@ class InvoicesReportController extends Controller
             // في حالة عدم تحديد تاريخ
             if ($request->type && $request->start_at == '' && $request->end_at == '') {
                 $invoices = invoices::where('Status', '=', $request->type)->get();
-                return $invoices;
+                // return $invoices;
                 $type = $request->type;
-                return view('reports.invoices_report', compact('type'))->with('invoices', $invoices);
+                return view('reports.invoices_report', compact('invoices', 'type'));
             }
             // في حالة تحديد تاريخ استحقاق
             else {
@@ -31,13 +31,13 @@ class InvoicesReportController extends Controller
                 $end_at = date($request->end_at);
                 $type = $request->type;
                 $invoices = invoices::whereBetween('invoice_Date', [$start_at, $end_at])->where('Status', '=', $request->type)->get();
-                return view('reports.invoices_report', compact('type', 'start_at', 'end_at'))->with('invoices', $invoices);
+                return view('reports.invoices_report', compact('type', 'start_at', 'end_at', 'invoices'));
             }
         }
         // في البحث برقم الفاتورة
         else {
             $invoices = invoices::select('*')->where('invoice_number', '=', $request->invoice_number)->get();
-            return view('reports.invoices_report')->with('invoices', $invoices);
+            return view('reports.invoices_report', compact('invoices'));
         }
     }
 }
