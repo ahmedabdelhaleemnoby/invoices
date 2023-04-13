@@ -67,12 +67,12 @@
                 <div class="row mg-b-20">
                     <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
                         <label>كلمة المرور:</label>
-                        {!! Form::password('password', array('class' => 'form-control)) !!}
+                        {!! Form::password('password', array('class' => 'form-control')) !!}
                     </div>
 
                     <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
                         <label> تاكيد كلمة المرور:</label>
-                        {!! Form::password('confirm-password', array('class' => 'form-control)) !!}
+                        {!! Form::password('confirm-password', array('class' => 'form-control')) !!}
                     </div>
                 </div>
 

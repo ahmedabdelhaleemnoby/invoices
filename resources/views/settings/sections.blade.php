@@ -83,11 +83,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i = 0 ?>
                             @foreach($sections as $section)
                             <tr>
-                                <?php $i++ ?>
-                                <td>{{$i}}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{$section->section_name}}</td>
                                 <td>{{$section->description}}</td>
                                 <!-- <td>{{$section->created_by}}</td> -->
